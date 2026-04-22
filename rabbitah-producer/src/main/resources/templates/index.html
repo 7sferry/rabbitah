@@ -6,22 +6,42 @@
     <style>
         body { font-family: sans-serif; max-width: 600px; margin: 60px auto; padding: 0 20px; }
         h1 { color: #ff6600; }
-        form { display: flex; gap: 10px; margin-top: 20px; }
+        h2 { color: #333; margin-top: 32px; }
+        form { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+        .row { display: flex; gap: 10px; }
         input[type="text"] { flex: 1; padding: 10px; font-size: 16px; border: 2px solid #ccc; border-radius: 6px; }
+        input[type="datetime-local"] { padding: 10px; font-size: 16px; border: 2px solid #ccc; border-radius: 6px; }
         button { padding: 10px 24px; font-size: 16px; background: #ff6600; color: white; border: none; border-radius: 6px; cursor: pointer; }
         button:hover { background: #e55b00; }
+        .schedule-btn { background: #0066cc; }
+        .schedule-btn:hover { background: #0055aa; }
         .success { margin-top: 16px; padding: 12px; background: #d4edda; color: #155724; border-radius: 6px; }
+        hr { margin-top: 32px; border: none; border-top: 1px solid #ddd; }
     </style>
 </head>
 <body>
-    <h1>Rabbitah - Producer</h1>
-    <p>Broadcast a message to ALL consumers (Order + Email) via Fanout Exchange.</p>
+    <h1>Rabbitah - Producerx</h1>
 
     <div th:if="${success}" class="success" th:text="${success}"></div>
 
+    <h2>Broadcast Now</h2>
     <form action="/send" method="post">
+        <div class="row">
+            <input type="text" name="message" placeholder="Type your message..." required>
+            <button type="submit">Broadcast</button>
+        </div>
+    </form>
+
+    <hr>
+
+    <h2>Schedule Message</h2>
+    <p>Message will be delivered to all consumers at the specified time.</p>
+    <form action="/schedule" method="post">
         <input type="text" name="message" placeholder="Type your message..." required>
-        <button type="submit">Broadcast</button>
+        <div class="row">
+            <input type="datetime-local" name="scheduledAt" required>
+            <button type="submit" class="schedule-btn">Schedule</button>
+        </div>
     </form>
 </body>
 </html>
