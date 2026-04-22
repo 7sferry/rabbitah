@@ -6,13 +6,12 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class MessageConsumer {
+public class OrderConsumer {
 
-    @RabbitListener(queues = "${rabbitah.queue.name}")
+    @RabbitListener(queues = "${rabbitah.queue.order}")
     public void receiveMessage(String message) {
-        log.warn("=== NOTIFICATION RECEIVED ===");
+        log.warn("=== ORDER NOTIFICATION ===");
         log.warn("Message: {}", message);
-        log.warn("=============================");
-        log.info("<<< Consumed message: {}", message);
+        log.warn("==========================");
     }
 }

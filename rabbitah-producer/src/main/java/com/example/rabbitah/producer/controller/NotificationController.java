@@ -22,7 +22,7 @@ public class NotificationController {
     @PostMapping("/send")
     public String sendMessage(@RequestParam String message, RedirectAttributes redirectAttributes) {
         messageProducer.sendMessage(message);
-        redirectAttributes.addFlashAttribute("success", "Message sent: " + message);
+        redirectAttributes.addFlashAttribute("success", "Message broadcast: " + message);
         return "redirect:/";
     }
 }

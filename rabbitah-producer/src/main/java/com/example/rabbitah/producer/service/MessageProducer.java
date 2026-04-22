@@ -16,11 +16,8 @@ public class MessageProducer {
     @Value("${rabbitah.exchange.name}")
     private String exchangeName;
 
-    @Value("${rabbitah.routing.key}")
-    private String routingKey;
-
     public void sendMessage(String message) {
-        rabbitTemplate.convertAndSend(exchangeName, routingKey, message);
-        log.info(">>> Sent message: {}", message);
+        rabbitTemplate.convertAndSend(exchangeName, "", message);
+        log.info(">>> Sent message to ALL consumers: {}", message);
     }
 }
